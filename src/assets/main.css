@@ -1,0 +1,17 @@
+/* 页面 */
+.quick-page{
+  padding: 10px;
+  background: #e9f1f6; /* 霜色 */
+}
+/* 菜单 */
+.quick-menu{
+  background: #161823; /* 漆黑 */
+}
+/* 表格 */
+.quick-table{
+
+}
+/* 表格上方操作区域 */
+.quick-table-operate{
+  margin-bottom: 15px;
+}
