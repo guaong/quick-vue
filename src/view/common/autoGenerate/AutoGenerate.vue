@@ -20,6 +20,8 @@
         :columns="columns"
         :data-source="dataSource"
         bordered
+        :scroll="{y:600}"
+        :pagination="false"
         rowKey="tableName"
         :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
         class="quick-table">
