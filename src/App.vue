@@ -7,36 +7,46 @@
 </template>
 
 <script>
-  import LeftMenu from '@/view/sys/component/LeftMenu'
-  import TopMenu from '@/view/sys/component/TopMenu'
+  import LeftMenu from '@/sys/component/LeftMenu'
+  import TopMenu from '@/sys/component/TopMenu'
 
   export default {
     name: 'App',
     components: {LeftMenu, TopMenu},
     created() {
       // 获取permissionList
-      this.permissions =
-        [{
-          path: '/a',
-          title: '菜单1',
-          name: 'SysMainPage',
-          key: '1',
-          component: 'view/sys/SysMainPage',
-          children: [{path: '/c', title: '菜单1.1', name:'Test1', key: '1.1', component: 'view/sys/Test1'}]
-        },
-          {path: '/b', title: '菜单2', name:'Test1', key: '2', component: 'view/sys/Test2'},
-          {path: '/d', title: '代码生成器', name:'autoGenerate', key: '3', component: 'view/common/autoGenerate/AutoGenerate'}
-        ];
-      // 加入router中
-      let routes = [];
-      for (let i = 0; i < this.permissions.length; i++){
-        this.getRoute(this.permissions[i], routes);
-      }
-      this.$router.addRoutes(routes)
+      this.axios.get(this.url.getPermissionList).then((response) => {
+        this.permissions = response.data.result
+        // 加入router中
+        let routes = [];
+        for (let i = 0; i < this.permissions.length; i++){
+          this.getRoute(this.permissions[i], routes);
+        }
+        //  router.addRoutes() is deprecated and has been removed in Vue Router 4.
+        //  Use router.addRoute() instead.
+        this.$router.addRoutes(routes)
+      })
+      // this.permissions =
+      //   [
+      //   //   {
+      //   //   path: '/a',
+      //   //   title: '菜单1',
+      //   //   name: 'SysMainPage',
+      //   //   key: '1',
+      //   //   component: 'view/sys/SysMainPage',
+      //   //   children: [{path: '/c', title: '菜单1.1', name:'Test1', key: '1.1', component: 'view/sys/Test1'}]
+      //   // },
+      //     {path: '/a', title: '菜单列表', component: 'view/common/permission/PermissionList'},
+      //     {path: '/b', title: '用户列表', component: 'view/common/permission/UserList'},
+      //     {path: '/d', title: '代码生成器',  component: 'view/common/autoGenerate/AutoGenerate'}
+      //   ];
     },
     data() {
       return {
-        permissions: {},
+        permissions: [],
+        url:{
+          getPermissionList : '/permission/permission/getPermissionList'
+        }
       }
     },
     methods:{

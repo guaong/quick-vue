@@ -13,7 +13,7 @@ Vue.use(Antd)
 Vue.use(VueAxios, axios)
 
 Vue.prototype.$qs = qs;
-axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.baseURL = 'http://localhost:8082'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

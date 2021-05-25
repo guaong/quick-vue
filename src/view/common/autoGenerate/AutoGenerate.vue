@@ -50,21 +50,21 @@
           {
             title: '表名',
             dataIndex: 'tableName',
-            align: "center"
+            align: "left"
           }, {
             title: '所属数据库',
             dataIndex: 'tableCat',
-            align: "center"
+            align: "left"
           }, {
             title: '注释',
             dataIndex: 'remark',
-            align: "center",
+            align: "left",
             customRender: function (text) {
               return (text == null || text === '') ? '-' : text;
             }
           }],
         url: {
-          getTables: '/quick/quick/getTables',
+          getTables: 'http://localhost:8080/quick/quick/getTables',
         },
         dataSource: [],
         search: undefined,

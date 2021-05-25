@@ -8,7 +8,7 @@
 
       <template v-for="item in permissions">
         <a-menu-item v-if="!item.children" :key="item.path">
-          <a-icon type="mail"/>
+          <a-icon :type="item.icon"/>
           <span>{{ item.title }}</span>
         </a-menu-item>
         <sub-menu v-else :key="item.path" :menu-info="item"/>
@@ -25,11 +25,11 @@
     template: `
       <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
         <span slot="title">
-          <a-icon type="mail" /><span style="margin-left:4px;">{{ menuInfo.title }}</span>
+          <a-icon :type="menuInfo.icon" /><span style="margin-left:4px;">{{ menuInfo.title }}</span>
         </span>
         <template v-for="item in menuInfo.children">
           <a-menu-item v-if="!item.children" :key="item.path">
-            <a-icon type="pie-chart" />
+            <a-icon :type="item.icon" />
             <span>{{ item.title }}</span>
           </a-menu-item>
           <sub-menu v-else :key="item.path" :menu-info="item" />
